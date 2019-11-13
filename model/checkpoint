@@ -1,0 +1,2 @@
+model_checkpoint_path: "AEflow"
+all_model_checkpoint_paths: "AEflow"
