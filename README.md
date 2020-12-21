@@ -3,7 +3,7 @@
 
 This repository contains the code associated with the paper
 
-Glaws, A., King, R., and Sprague, M., *Deep learning for in-situ data compression of large turbulent flow simulations*. 2019. (In Review).
+Glaws, A., King, R., and Sprague, M., *Deep learning for in-situ data compression of large turbulent flow simulations*.  [https://doi.org/10.1103/PhysRevFluids.5.114602](https://doi.org/10.1103/PhysRevFluids.5.114602).
 
 ___
 ### Requirements
