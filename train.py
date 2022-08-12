@@ -6,6 +6,7 @@ import tensorflow as tf
 from AEflow import AEflow
 import utils
 
+
 def train(data_path, mu_sig, batch_size=1, N_epochs=10):
     print('Initializing network ...', end=' ')
     x = tf.placeholder(tf.float64, [None, 128, 128, 128, 1])

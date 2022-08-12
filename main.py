@@ -1,3 +1,4 @@
+from operator import mod
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
@@ -9,11 +10,13 @@ import utils
 def run_full(data_path, mu_sig=None, batch_size=1):
     print('Initializing network ...', end=' ')
     tf.reset_default_graph()
-    x = tf.placeholder(tf.float64, [None, None, None, None, 1])
+    x = tf.placeholder(tf.float64, [None, 128, 128, 128, 1])
     model = AEflow(x, status='full')
     init = tf.global_variables_initializer()
     saver = tf.train.Saver(var_list=model.var_list)
     print('Done.')
+
+    utils.model_summary()
 
     print('Building data pipeline ...', end=' ')
     ds = tf.data.TFRecordDataset(data_path)
@@ -56,7 +59,7 @@ def run_full(data_path, mu_sig=None, batch_size=1):
 def run_compress(data_path, mu_sig=None, batch_size=1):
     print('Initializing network ...', end=' ')
     tf.reset_default_graph()
-    x = tf.placeholder(tf.float64, [None, None, None, None, 1])
+    x = tf.placeholder(tf.float64, [None, 128, 128, 128, 1])
     model = AEflow(x, status='compress')
     init = tf.global_variables_initializer()
     saver = tf.train.Saver(var_list=model.var_list)
@@ -83,6 +86,7 @@ def run_compress(data_path, mu_sig=None, batch_size=1):
             while True:
                 x_batch = sess.run(x_out)
                 y_out = sess.run(model.y, feed_dict={x: x_batch})
+                
 
                 if data_out is None:
                     data_out = y_out
